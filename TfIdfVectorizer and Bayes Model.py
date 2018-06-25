@@ -28,37 +28,6 @@ yelp = pd.read_csv('yelp.csv')
 yelp_class = yelp[(yelp['stars'] == 1) | (yelp['stars'] == 5)]
 X = yelp_class['text']
 y = yelp_class['stars']
-bow_transformer = CountVectorizer(analyzer=text_process).fit(X)
-X = bow_transformer.transform(X)
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=101)
-nb = MultinomialNB()
-nb.fit(X_train, y_train)
-preds = nb.predict(X_test)
-
-
-print(classification_report(y_test, preds))
-
-bow_transformer = TfidfVectorizer(analyzer=text_process).fit(X)
-X = bow_transformer.transform(X)
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=101)
-nb = SVC(kernel='linear')
-nb.fit(X_train, y_train)
-preds = nb.predict(X_test)
-
-
-print(classification_report(y_test, preds))
-
-
-bow_transformer = CountVectorizer(analyzer=text_process).fit(X)
-X = bow_transformer.transform(X)
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=101)
-nb = SVC(kernel='linear')
-nb.fit(X_train, y_train)
-preds = nb.predict(X_test)
-
-
-print(classification_report(y_test, preds))
-
 bow_transformer = TfidfVectorizer(analyzer=text_process).fit(X)
 X = bow_transformer.transform(X)
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=101)
